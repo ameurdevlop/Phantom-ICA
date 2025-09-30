@@ -1,0 +1,628 @@
+/* --- Variables d'Ancrage (Assurez-vous qu'elles existent dans votre fichier global ou racine) --- */
+:root {
+    --color-text-white: #ffffff;
+       --color-text-medium: #9ca3af; /* Gris moyen */
+    --color-red-main: #ef4444; /* Rouge principal */
+    --color-red-dark: #dc2626; /* Rouge foncé */
+    --color-yellow: #f59e0b; /* Jaune */
+     --color-green: #10b981; /* Vert */
+    --color-background-dark: #0f172a; /* Bleu foncé/Noir */
+     --color-dark-bg: #000; /* Noir (pour le texte sur jaune) */
+   }
+   
+   /* --- Animations --- */
+   @keyframes fadeIn {
+    from {
+    opacity: 0;
+    transform: translateY(5px);
+    }
+    to {
+    opacity: 1;
+    transform: translateY(0);
+    }
+   }
+   @keyframes fadeInSlide {
+    from {
+    opacity: 0;
+    transform: translateY(10px);
+    }
+    to {
+    opacity: 1;
+    transform: translateY(0);
+    }
+   }
+   
+   
+   /* --- NOUVEAU : Conteneur pour le contenu défilant --- */
+   .scrollableDetailsContent {
+    flex-grow: 1;
+    overflow-y: auto; /* Déjà présent - garder */
+    padding-bottom: 4rem;
+    margin-right: -2rem;
+    padding-right: 2rem;
+    max-height: calc(60vh - 120px); /* AJOUTÉ : ajustement hauteur */
+}
+   
+   /* Redéfinition des sections pour qu'elles prennent effet dans le nouveau conteneur */
+   .detailsGrid {
+    /* style inchangé */
+    margin-bottom: 1.5rem;
+    padding-right: 1.5rem; /* Ajustement du padding pour la scrollbar */
+   }
+   .backgroundSection {
+    /* style inchangé */
+    margin-bottom: 0; /* Pas de marge en bas de cette section si elle est dans un conteneur défilant */
+    padding-right: 1.5rem; /* Ajustement du padding pour la scrollbar */
+   }
+   
+   
+   /* Scrollbar personnalisée pour le contenu de la carte - BARRE SUPPRIMÉE */
+.scrollableDetailsContent::-webkit-scrollbar {
+    width: 0px; /* Largeur à 0 pour cacher */
+}
+.scrollableDetailsContent::-webkit-scrollbar-track {
+    background: transparent; /* Fond transparent */
+}
+.scrollableDetailsContent::-webkit-scrollbar-thumb {
+    background-color: transparent; /* Pouce transparent */
+}
+.scrollableDetailsContent::-webkit-scrollbar-thumb:hover {
+    background-color: transparent; /* Pouce transparent au hover */
+}
+   /* -------------------- Mise en page principale -------------------- */
+   
+   .targetPageContent {
+    padding-top: 0.5rem; /* Réduit le padding supérieur pour remonter le contenu */
+    padding-bottom: 1.5rem; 
+    animation: fadeIn 0.5s ease-out;
+   }
+   
+   .header {
+    margin-bottom: 0.5rem; /* Réduit la marge pour remonter l'en-tête */
+   }
+   .pageTitle {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+    color: var(--color-text-white);
+   }
+   .briefing {
+    color: var(--color-text-medium);
+    margin-bottom: 1.2rem;
+    font-size: 0.9rem;
+   }
+   
+   /* --- Barre de recherche --- */
+   
+   .targetActionBar {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+   }
+   
+   .targetSearchInput {
+    flex-grow: 1;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--color-text-white);
+    font-size: 0.9rem; 
+    transition: all 0.2s;
+   }
+   .targetSearchInput:focus {
+    outline: none;
+    border-color: var(--color-red-main);
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.5);
+   }
+   
+   .actionButton {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+    border: 1px solid var(--color-text-medium);
+    background: none;
+    color: var(--color-text-medium);
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+   }
+   .iconSmall {
+    width: 18px;
+    height: 18px;
+    margin-right: 0.5rem;
+   }
+   
+   /* -------------------- Conteneur Maître-Détail -------------------- */
+   
+   .masterDetailContainer {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 1rem;
+    /* height: 60vh; <- RETIRÉ */
+    min-height: 400px;
+   }
+   
+   .targetMasterList,
+   .targetDetailsPanel {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    overflow: hidden; /* Maintenu pour le targetMasterList */
+    height: 100%; /* Maintenu pour que le contenu puisse défiler */
+    gap: 0;
+   }
+   
+   /* -------------------- Colonne Gauche : Liste -------------------- */
+   
+   .targetMasterList {
+    display: flex;
+    flex-direction: column;
+    max-height: 60vh; /* AJOUTÉ : hauteur maximale */
+}
+   
+   .listTitle {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text-white);
+    padding: 0.5rem 1.5rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+   }
+   
+   .targetListWrapper {
+    flex-grow: 1;
+    overflow-y: auto; /* Déjà présent - garder */
+    padding-right: 4px;
+    padding-left: 0.5rem;
+    max-height: calc(60vh - 80px); /* AJOUTÉ : ajustement hauteur */
+}
+   
+   /* Scrollbar sombre pour la liste */
+   .targetListWrapper::-webkit-scrollbar {
+    width: 8px;
+   }
+   .targetListWrapper::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+   }
+   .targetListWrapper::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+   }
+   .targetListWrapper::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+   }
+   
+   .targetItem {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem; 
+    margin-right: 0.5rem; 
+    cursor: pointer;
+    transition: background-color 0.2s;
+    border-left: 4px solid transparent;
+    animation: fadeIn 0.4s ease-out;
+   }
+   .targetItem:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+   }
+   .targetItemSelected {
+    border-left: 4px solid var(--color-red-main); 
+    background-color: rgba(255, 255, 255, 0.1);
+   }
+   
+   .targetUserIcon {
+    width: 24px;
+    height: 24px;
+    color: var(--color-text-medium);
+    margin-right: 0.7rem; 
+   }
+   .targetItemSelected .targetUserIcon {
+    color: var(--color-red-main);
+   }
+   .targetName {
+    font-size: 0.95rem; 
+    font-weight: 600;
+    margin-bottom: 0;
+    color: var(--color-text-white);
+   }
+   .targetLocation {
+    font-size: 0.75rem; 
+    color: var(--color-text-medium);
+   }
+   .targetItemSelected .targetLocation {
+    color: rgba(255, 255, 255, 0.7);
+   }
+   
+   
+   /* -------------------- Colonne Droite : Détails (Standard) -------------------- */
+   
+   .targetDetailsPanel {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 2rem; /* CHANGÉ : padding bas ajouté */
+    height: 100%;
+    overflow: hidden;
+    max-height: 60vh;
+    position: relative; /* AJOUTÉ : pour le positionnement des boutons */
+}
+   
+   /* Style si aucune cible n'est sélectionnée */
+   .noTargetSelected {
+    width: 100%;
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--color-text-medium);
+   }
+   .largeUserIcon {
+    width: 48px;
+    height: 48px;
+    color: var(--color-text-medium);
+   }
+   
+/* --- BOUTONS DÉPLACÉS EN BAS --- */
+.detailsActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    width: 100%;
+    
+    /* NOUVEAU POSITIONNEMENT */
+    position: absolute; /* Position absolue */
+    bottom: 1.5rem; /* Collé en bas */
+    left: -1.5rem; /* Alignement gauche */
+    right: 2rem; /* Alignement droit */
+    
+    margin: 0; /* Reset des marges */
+    padding: 0; /* Reset du padding */
+}
+.fullDossierButton, .acceptContractButton {
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 0.9rem;
+}
+   
+   .fullDossierButton {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-text-white);
+    border: none;
+   }
+   .fullDossierButton:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+   }
+   
+   .acceptContractButton {
+    background-color: var(--color-red-main);
+    color: var(--color-text-white);
+    border: none;
+   }
+   .acceptContractButton:hover {
+    background-color: var(--color-red-dark);
+   }
+   
+   /* --- Styles pour le Contenu de la Cible Sélectionnée --- */
+   
+   .detailsHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 1.5rem;
+   }
+   
+   .detailsTitle {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    color: var(--color-text-white);
+   }
+   
+   .detailsProfession {
+    font-size: 0.9rem;
+    color: var(--color-red-main);
+    margin-top: -0.5rem; 
+    font-weight: 500;
+   }
+   
+   /* Badge de Statut */
+   .statusBadge {
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+   }
+   .statusActiveBadge {
+    background-color: var(--color-red-main);
+    color: var(--color-text-white);
+   }
+   .statusPendingBadge {
+    background-color: var(--color-yellow);
+    color: var(--color-dark-bg);
+   }
+   
+   /* Grille 2 Colonnes pour Profil & Habitudes */
+   .detailsGrid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr; 
+    gap: 2rem;
+    width: 100%;
+    /* margin-bottom: 1.5rem; est dans .scrollableDetailsContent */
+   }
+   
+   .sectionTitle {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text-white);
+    margin-bottom: 1rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+   }
+   
+   /* Lignes d'Information */
+   .infoRow {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    padding: 0.3rem 0;
+    color: var(--color-text-white);
+   }
+   
+   .infoLabel {
+    color: var(--color-text-medium);
+    font-weight: 500;
+   }
+   
+   /* Styles spécifiques aux valeurs */
+   .threatCritical {
+    color: var(--color-red-main);
+    font-weight: 700;
+   }
+   .threatNormal {
+    color: var(--color-yellow);
+    font-weight: 600;
+   }
+   .bountyValue {
+    color: var(--color-green);
+    font-weight: 600;
+   }
+   
+   /* Liste des Habitudes */
+   .habitsList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.9rem;
+   }
+   .habitsList li {
+    padding: 0.2rem 0;
+    position: relative;
+    padding-left: 1rem;
+    color: var(--color-text-medium);
+   }
+   /* Point de liste personnalisé (comme une petite puce) */
+   .habitsList li::before {
+    content: '\2022'; 
+    color: var(--color-red-main);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+   }
+   
+   /* Section Background */
+   .backgroundSection {
+    flex-grow: 1; 
+    /* margin-bottom: 1.5rem; est géré par le padding-bottom de scrollableDetailsContent */
+   }
+   
+   .backgroundText {
+    font-size: 0.9rem;
+    color: var(--color-text-medium);
+    line-height: 1.4;
+   }
+   
+   /* -------------------- Status -------------------- */
+   
+   .statusActive {
+    color: var(--color-red-main); 
+    font-weight: 600;
+   }
+   .statusPending {
+    color: var(--color-yellow); 
+    font-weight: 600;
+   }
+   
+   /* ---------------------------------------------------------------------- */
+   /* AJOUTS POUR TargetFullDossier */
+   /* ---------------------------------------------------------------------- */
+   
+   .fullDossierContainer {
+    animation: fadeInSlide 0.5s ease-out; 
+    padding-top: 0; 
+   }
+   
+   .dossierHeader {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+   }
+   
+   .backButton {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    color: var(--color-text-white);
+    font-size: 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.2s;
+   }
+   .backIcon {
+    width: 24px;
+    height: 24px;
+    margin-right: 0.75rem;
+   }
+   
+   .dossierContentWrapper {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 2rem;
+   }
+   
+   .profileImagePlaceholder {
+    width: 100%;
+    height: 350px; 
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   }
+   .dossierUserIcon {
+    width: 100px;
+    height: 100px;
+    color: rgba(255, 255, 255, 0.1);
+   }
+   .profileMeta {
+       background-color: rgba(255, 255, 255, 0.05); 
+       padding: 1.5rem;
+       border-radius: 8px;
+       display: flex;
+       flex-direction: column;
+       gap: 0.5rem;
+   }
+   .dossierName {
+       font-size: 1.5rem;
+       font-weight: 700;
+       margin-bottom: 0.2rem;
+       color: var(--color-text-white);
+   }
+   .dossierProfession {
+       color: var(--color-red-main);
+       font-size: 1rem;
+       font-weight: 500;
+       margin-bottom: 0.5rem;
+   }
+   .statusBadgeDossier {
+       align-self: flex-start;
+       margin-top: -0.2rem;
+       margin-bottom: 0.5rem;
+   }
+   .dossierLocation, .dossierThreat, .dossierBounty {
+       font-size: 0.9rem;
+       color: var(--color-text-medium);
+   }
+   .bountyValueDossier {
+       color: var(--color-green);
+       font-weight: 600;
+   }
+   .securityAssessment {
+       padding-top: 1.5rem;
+       margin-top: 1.5rem;
+       border-top: 1px solid rgba(255, 255, 255, 0.1);
+   }
+   .securityDetail {
+       font-size: 0.9rem;
+       color: var(--color-text-medium);
+       margin-bottom: 0.4rem;
+   }
+   .securityDetail span {
+       color: var(--color-text-white);
+       font-weight: 500;
+   }
+   
+   
+   .dossierInfoTabs {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 1.5rem;
+   }
+   
+   .tabBarDossier {
+    display: flex;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 1.5rem;
+   }
+   
+   .dossierTab {
+    background: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    color: var(--color-text-medium);
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px; 
+   }
+   .dossierTabActive {
+    color: var(--color-red-main);
+    border-bottom: 2px solid var(--color-red-main);
+    font-weight: 700;
+   }
+   
+   .habitsBox {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: 6px;
+    margin-top: 1.5rem;
+   }
+   .boxTitle {
+    color: var(--color-text-white);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+   }
+   .habitsListDossier li {
+    font-size: 0.9rem;
+    color: var(--color-text-medium);
+    line-height: 1.5;
+   }
+   .contentTitle {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-red-main);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+   }
+   .contentText {
+    font-size: 0.95rem;
+    color: var(--color-text-medium);
+    line-height: 1.5;
+   }
+   .detailsActionsDossier {
+       display: flex;
+       justify-content: flex-end;
+       padding-top: 1.5rem;
+       border-top: 1px solid rgba(255, 255, 255, 0.1);
+       margin-top: 1.5rem;
+   }
+   .acceptContractButtonDossier {
+       background-color: var(--color-red-main);
+       color: var(--color-text-white);
+       border: none;
+       padding: 0.6rem 1.5rem;
+       border-radius: 6px;
+       font-weight: 600;
+       cursor: pointer;
+       transition: background-color 0.2s;
+   }
+   .acceptContractButtonDossier:hover {
+       background-color: var(--color-red-dark);
+   }

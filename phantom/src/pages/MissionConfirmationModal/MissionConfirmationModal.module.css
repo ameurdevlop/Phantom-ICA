@@ -1,0 +1,181 @@
+/* Fichier : MissionConfirmationModal.module.css */
+
+/* Variables (Réutilisées pour la cohérence) */
+:root {
+    --color-text-white: #ffffff;
+    --color-text-medium: #a1a1aa; 
+    --color-red-main: #ef4444; 
+    --color-red-dark: #dc2626; 
+    --color-green: #10b981; /* Vert pour la validation */
+    --color-background-darker: #18181b; 
+    --color-border-subtle: rgba(255, 255, 255, 0.15); 
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes fadeInSlide {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Styles de la Modale de Confirmation --- */
+
+/* 1. L'Overlay (Effet Verre Dépoli) */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4); 
+    backdrop-filter: blur(8px); 
+    -webkit-backdrop-filter: blur(8px); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001; /* Z-index plus élevé que la modale précédente (1000) */
+    animation: fadeIn 0.2s ease-out; 
+}
+
+/* 2. Le Contenu de la Modale (TAILLE RÉDUITE) */
+.modalContent {
+    background-color: var(--color-background-darker);
+    width: 100%;
+    max-width: 450px; /* TAILLE PLUS PETITE */
+    border: 1px solid var(--color-border-subtle); 
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.2); /* Ombre Verte pour la réussite */
+    border-radius: 8px;
+    padding: 1.5rem; 
+    color: var(--color-text-white);
+    transform: scale(1);
+    animation: fadeInSlide 0.3s ease-out; 
+}
+
+/* 3. En-tête et Fermeture */
+.modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.75rem; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+    margin-bottom: 1.5rem; 
+}
+.modalTitle {
+    font-size: 1.25rem; /* Taille plus petite */
+    font-weight: 700;
+    color: var(--color-text-white);
+}
+.modalCloseButton {
+    background: none;
+    border: none;
+    color: var(--color-text-medium);
+    font-size: 1.5rem; 
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+    padding: 0;
+}
+.modalCloseButton:hover {
+    color: var(--color-red-main);
+}
+
+/* 4. Corps de la Confirmation */
+.confirmationBody {
+    text-align: center;
+    padding: 0 1rem;
+}
+.successIcon {
+    width: 3.5rem;
+    height: 3.5rem;
+    color: var(--color-green);
+    margin-bottom: 1rem;
+}
+.missionAcceptedTitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text-white);
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+.confirmationText {
+    font-size: 0.9rem;
+    color: var(--color-text-medium);
+    margin-bottom: 2rem;
+}
+.confirmationText strong {
+    color: var(--color-text-white);
+}
+.nextStepsTitle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-red-main);
+    margin-bottom: 0.75rem;
+    text-align: left;
+}
+.nextStepsList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+.nextStepsList li {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    padding: 0.5rem 0;
+    color: var(--color-text-white);
+}
+.nextStepsList li span {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--color-red-main);
+    color: var(--color-text-white);
+    font-weight: 700;
+    font-size: 0.75rem;
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+
+/* 5. Boutons d'Action */
+.modalActions {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 1.5rem; 
+    margin-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05); 
+}
+
+.returnButton, .prepareEquipmentButton {
+    padding: 0.6rem 1.25rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 0.9rem;
+    border: none;
+    flex-grow: 1; /* Permet aux boutons d'occuper tout l'espace */
+}
+
+.returnButton {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-text-white);
+}
+.returnButton:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.prepareEquipmentButton {
+    background-color: var(--color-red-main);
+    color: var(--color-text-white);
+}
+.prepareEquipmentButton:hover {
+    background-color: var(--color-red-dark);
+}

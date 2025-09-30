@@ -1,0 +1,247 @@
+/* --- Styles Généraux de la Page Agent Profile --- */
+.agentProfilePage {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    color: var(--color-text-white);
+    animation: fadeInUp 0.8s ease-out; /* Animation du conteneur principal */
+}
+
+/* En-tête (Similaire à TargetsPage) */
+.header {
+    margin-bottom: 1.5rem;
+}
+
+.pageTitle {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+}
+
+.briefing {
+    color: var(--color-text-medium);
+    font-size: 0.9rem;
+}
+
+/* --- Grille Principale du Contenu --- */
+.mainContentGrid {
+    display: grid;
+    grid-template-columns: 320px 1fr; /* Colonne gauche fixe, colonne droite prend le reste */
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+/* --- Colonne Gauche : Informations de l'Agent --- */
+.agentInfoCard {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: auto; /* ✅ Ne s'étend que selon son contenu */
+    align-self: flex-start; /* ✅ S'aligne en haut */
+    animation: fadeInUp 0.8s ease-out 0.2s forwards;
+}
+
+.agentAvatar {
+    width: 80px;
+    height: 80px;
+    color: var(--color-text-medium);
+    margin-bottom: 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    padding: 0.5rem;
+}
+
+.agentName {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+}
+
+.agentAlias {
+    font-size: 0.95rem;
+    color: var(--color-red-main);
+    margin-bottom: 1.5rem;
+}
+
+/* Lignes d'information pour le profil (similaire à TargetDetailsPanel) */
+.infoRow {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.4rem 0;
+    font-size: 0.9rem;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.05); /* Ligne pointillée légère */
+}
+
+.infoRow:last-of-type {
+    border-bottom: none; /* Pas de bordure pour la dernière ligne */
+    margin-bottom: 1.5rem;
+}
+
+.infoLabel {
+    color: var(--color-text-medium);
+    font-weight: 500;
+}
+
+.statusActive {
+    color: var(--color-green); /* Le statut est actif, donc vert */
+    font-weight: 600;
+}
+
+.editProfileButton {
+    padding: 0.7rem 1.5rem;
+    border-radius: 6px;
+    background-color: var(--color-red-main);
+    color: var(--color-text-white);
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 0.9rem;
+    margin-top: auto; /* Pousse le bouton en bas de la carte flex */
+    width: 80%; /* Largeur du bouton */
+}
+
+.editProfileButton:hover {
+    background-color: var(--color-red-dark);
+}
+
+/* --- Colonne Droite : Compétences et Succès --- */
+.rightColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* --- Carte d'Évaluation des Compétences --- */
+.skillAssessmentCard {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 1.5rem;
+    animation: fadeInUp 0.8s ease-out 0.4s forwards;
+}
+
+.cardTitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.8rem;
+}
+
+.cardIcon {
+    width: 24px;
+    height: 24px;
+    color: var(--color-red-main);
+    margin-right: 0.8rem;
+}
+
+.skillBarContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.skillName {
+    flex-basis: 120px; /* Largeur fixe pour le nom de la compétence */
+    color: var(--color-text-medium);
+}
+
+.progressBar {
+    flex-grow: 1;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    margin: 0 1rem;
+    overflow: hidden; /* Assure que le remplissage reste à l'intérieur */
+}
+
+.progressFill {
+    height: 100%;
+    background-color: var(--color-red-main);
+    border-radius: 4px;
+    transition: width 1s ease-out; /* Animation de la barre de progression */
+}
+
+.skillValue {
+    width: 60px; /* Largeur fixe pour la valeur */
+    text-align: right;
+    font-weight: 600;
+}
+
+/* --- Carte des Succès --- */
+.achievementsCard {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 1.5rem;
+    animation: fadeInUp 0.8s ease-out 0.6s forwards;
+}
+
+.achievementsList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.achievementItem {
+    padding: 0.4rem;
+    display: flex;
+    align-items: flex-start;
+    padding: 0.8rem;
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.03); /* Légèrement plus clair */
+    transition: background-color 0.2s;
+}
+
+.achievementItem:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+}
+
+.achievementCompleted {
+    opacity: 0.7; /* Réduire l'opacité pour les succès complétés */
+}
+
+.achievementCheck {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    border: 1px solid var(--color-text-medium);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.4rem;
+    flex-shrink: 0; /* Empêche le check de rétrécir */
+}
+
+.achievementCompleted .achievementCheck {
+    background-color: var(--color-green); /* Vert pour complété */
+    border-color: var(--color-green);
+}
+
+.checkIcon {
+    width: 12px;
+    height: 12px;
+    color: var(--color-text-white);
+}
+
+.achievementText {
+    flex-grow: 1;
+}
+
+.achievementName {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+}
+
+.achievementDescription {
+    font-size: 0.7rem;
+    color: var(--color-text-medium);
+    line-height: 1.3;
+}

@@ -1,0 +1,234 @@
+/* Note: Les variables de couleur doivent être définies ou importées globalement, 
+   mais pour ce fichier, nous les réintégrons pour l'autonomie. */
+:root {
+    --color-text-white: #ffffff;
+    --color-text-medium: #9ca3af; 
+    --color-red-main: #ef4444; 
+    --color-red-dark: #dc2626; 
+    --color-green: #10b981; 
+    --color-yellow: #f59e0b; 
+    --color-blue: #3b82f6;
+}
+
+/* --- Mise en Page Générale et En-tête --- */
+.missionPageContent {
+    /* Animation pour l'arrivée de la page */
+    animation: fadeInSlide 0.8s ease-out; 
+    /* Padding vertical important pour aérer le contenu de la page */
+    padding-top: 4rem !important; /* Forcé */
+    /* 🔑 Augmentation EXTRÊME pour forcer l'espace en bas */
+    padding-bottom: 10rem !important; /* Forcé */
+}
+
+.header {
+    /* Augmentation de l'espace après l'en-tête */
+    margin-bottom: 5rem !important; /* Forcé */
+}
+
+.pageTitle {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.briefing {
+    color: var(--color-text-medium);
+    /* 🔑 Augmentation de la marge en bas pour séparer le sous-titre de la barre de recherche */
+    margin-bottom: 6rem !important; /* Forcé */
+}
+
+/* --- Barre d'Action (Recherche, Filtre, Tri) --- */
+.missionActionBar {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    /* Augmentation de l'espace après la barre d'action et avant les onglets */
+    margin-bottom: 5rem !important; /* Forcé */
+}
+
+.missionSearchInput {
+    flex-grow: 1;
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--color-text-white);
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.missionSearchInput:focus {
+    outline: none;
+    border-color: var(--color-red-main);
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.5);
+}
+
+.actionButton {
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+    border: 1px solid var(--color-text-medium);
+    background: none;
+    color: var(--color-text-medium);
+    display: flex;
+    align-items: center;
+}
+
+.actionButton:hover {
+    border-color: var(--color-text-white);
+    color: var(--color-text-white);
+}
+
+.iconSmall {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.5rem;
+}
+
+/* --- Onglets de Filtrage --- */
+.missionTabs {
+    display: flex;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    /* Augmentation de l'espace après les onglets et avant la grille */
+    margin-bottom: 4rem !important; /* Forcé */
+}
+
+.missionTab {
+    background: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    color: var(--color-text-medium);
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px; 
+}
+
+.missionTab:hover {
+    color: var(--color-text-white);
+}
+
+.missionTabActive {
+    color: var(--color-red-main);
+    border-bottom: 2px solid var(--color-red-main);
+    font-weight: 700;
+}
+
+
+/* --- Grille des Missions --- */
+.missionsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+    row-gap: 4.5rem; /* Espacement vertical plus grand (2.5rem) */
+    column-gap: 1.5rem; /* Espacement horizontal standard (1.5rem) */
+
+    /* Marge importante en bas de la grille, conservée */
+    margin-bottom: 5rem; 
+}
+
+.noResults {
+    grid-column: 1 / -1; 
+    text-align: center;
+    padding: 3rem;
+    color: var(--color-text-medium);
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+/* --- Styles des Cartes de Mission (Réutilisation des styles du Dashboard) --- */
+
+.missionCardLayout {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; 
+}
+.missionContent {
+    flex-grow: 1; 
+    margin-bottom: 1rem; 
+}
+.missionCardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+.targetName {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text-white);
+}
+.location {
+    display: flex;
+    align-items: center;
+    color: var(--color-text-medium);
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem; 
+}
+.detailRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.3rem; 
+    font-size: 0.9rem;
+}
+.detailLabel {
+    color: var(--color-text-medium);
+}
+.detailValue {
+    font-weight: 600;
+    color: var(--color-text-white);
+}
+.priorityHigh { color: var(--color-red-main); }
+.priorityMedium { color: var(--color-yellow); }
+.priorityCritical { color: var(--color-red-main); }
+.currency { color: var(--color-green); }
+
+.statusActive { color: var(--color-red-main); font-weight: 600; }
+.statusPending { color: var(--color-yellow); font-weight: 600; }
+
+.missionFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem; 
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1rem;
+    flex-shrink: 0; 
+}
+.detailsButton {
+    background: none;
+    border: 1px solid var(--color-text-medium);
+    color: var(--color-text-medium);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+}
+.detailsButton:hover {
+    border-color: var(--color-text-white);
+    color: var(--color-text-white);
+}
+.acceptButton {
+    background-color: var(--color-red-dark);
+    color: var(--color-text-white);
+    border: 1px solid var(--color-red-dark);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+}
+.acceptButton:hover {
+    background-color: var(--color-red-main);
+}
+
+/* --- Keyframes pour les animations --- */
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

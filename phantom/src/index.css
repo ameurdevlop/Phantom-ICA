@@ -1,0 +1,37 @@
+/* --- Correction pour l'affichage en plein écran --- */
+html, body, #root {
+  height: 100%; 
+  margin: 0;
+  padding: 0;
+}
+
+/* 🔑 CORRECTION : Masquer toute barre de défilement verticale non désirée */
+body {
+  overflow-y: hidden; 
+}
+/* ------------------------------------------------ */
+
+/* Mise en place de la police (exemple) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Ajoutez d'autres styles de base ici */
+/* --- Correction pour l'affichage en plein écran --- */
+html, body, #root {
+  height: 100%; 
+  margin: 0;
+  padding: 0;
+}
+
+/* 🔑 CORRECTION : Masquer la barre de défilement par défaut (on ne veut que le défilement dans .mainContent) */
+body {
+  font-family: 'Inter', sans-serif; /* 🔑 AJOUTÉ : Votre police */
+  overflow: hidden; 
+}
+/* ------------------------------------------------ */
+
+/* Mise en place de la police */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');

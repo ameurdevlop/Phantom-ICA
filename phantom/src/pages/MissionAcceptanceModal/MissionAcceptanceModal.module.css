@@ -1,0 +1,257 @@
+/* Fichier : MissionAcceptanceModal.module.css - VERSION PHANTOM V6 (OPTIMISATION DE HAUTEUR) */
+
+/*
+   NOTE IMPORTANTE : Utilisation des variables pour respecter le thème
+*/
+:root {
+    --color-text-white: #ffffff;
+    --color-text-medium: #a1a1aa; 
+    --color-red-main: #ef4444; 
+    --color-red-dark: #dc2626; 
+    --color-yellow: #f59e0b; 
+    --color-green: #10b981; 
+    --color-background-dark: #0f172a; 
+    --color-background-darker: #18181b; 
+    --color-border-subtle: rgba(255, 255, 255, 0.15); 
+    --color-map-background: #000000; 
+}
+
+/* Animations (Inchangées) */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes fadeInSlide {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Styles de la Modale --- */
+
+/* 1. L'Overlay (Inchangé) */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+    background-color: rgba(0, 0, 0, 0.4); 
+    backdrop-filter: blur(8px); 
+    -webkit-backdrop-filter: blur(8px); 
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; 
+    animation: fadeIn 0.2s ease-out; 
+}
+
+/* 2. Le Contenu de la Modale (MODIFIÉ : AJOUT DE MAX-HEIGHT) */
+.modalContent {
+    background-color: var(--color-background-darker);
+    width: 100%;
+    max-width: 750px; 
+    
+    /* ************************************** */
+    /* CORRECTION DE HAUTEUR */
+    max-height: 95vh; /* Limite la hauteur de la modale à 95% de la hauteur de l'écran */
+    overflow-y: auto; /* Assure que le contenu de la modale défile si nécessaire */
+    /* ************************************** */
+    
+    border: 1px solid var(--color-border-subtle); 
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.2); 
+    border-radius: 8px;
+    padding: 1.25rem 2rem; 
+    color: var(--color-text-white);
+    transform: scale(1);
+    animation: fadeInSlide 0.3s ease-out; 
+}
+
+/* 3. En-tête et Fermeture (Inchangés) */
+.modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.75rem; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+    margin-bottom: 1.25rem; 
+}
+.modalTitle {
+    font-size: 1.6rem; 
+    font-weight: 700;
+    color: var(--color-text-white);
+}
+.modalCloseButton {
+    background: none;
+    border: none;
+    color: var(--color-text-medium);
+    font-size: 1.8rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+    padding: 0.25rem;
+}
+.modalCloseButton:hover {
+    color: var(--color-red-main);
+}
+
+/* 4. Alerte (Le bandeau) (Inchangé) */
+.modalAlert {
+    background-color: rgba(245, 158, 11, 0.1); 
+    border-left: 4px solid var(--color-yellow); 
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+.modalAlert p {
+    margin: 0;
+    color: var(--color-yellow); 
+}
+
+/* 5. Titres de Section (Inchangés) */
+.contractSummaryTitle, .primaryObjectivesTitle, .acceptanceTermsTitle, .mapTitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-red-main);
+    margin-top: 1.25rem;
+    margin-bottom: 0.6rem; 
+}
+
+/* 6. Styles de la Carte (Inchangés) */
+.mapContainer {
+    border: 2px solid var(--color-border-subtle); 
+    background-color: var(--color-map-background); 
+    border-radius: 4px;
+    height: 200px; 
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.mapContent {
+    text-align: center;
+    opacity: 0.7;
+}
+
+.mapPinIcon {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--color-red-main);
+    margin-bottom: 0.5rem;
+}
+
+.mapText {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-text-white);
+    margin: 0;
+}
+
+.mapTextSmall {
+    font-size: 0.85rem;
+    color: var(--color-text-medium);
+    margin: 0.2rem 0 0 0;
+}
+
+/* 7. Résumé du contrat (Grille) et Listes (Inchangés) */
+.contractSummaryGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem 3rem;
+    margin-bottom: 1.25rem;
+}
+.infoRowModal {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    padding: 0.2rem 0;
+    color: var(--color-text-white);
+}
+.infoLabel {
+    color: var(--color-text-medium);
+    font-weight: 500;
+}
+.threatCritical {
+    color: var(--color-red-main);
+    font-weight: 700;
+}
+.bountyValue {
+    color: var(--color-green);
+    font-weight: 600;
+}
+.primaryObjectivesList, .acceptanceTermsList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--color-text-medium);
+}
+.primaryObjectivesList li {
+    display: flex;
+    align-items: flex-start;
+    padding: 0.4rem 0;
+}
+.primaryObjectivesList input[type="checkbox"] {
+    margin-right: 0.75rem;
+    accent-color: var(--color-green); 
+    width: 16px;
+    height: 16px;
+    margin-top: 2px;
+}
+.primaryObjectivesList span {
+    color: var(--color-text-white);
+}
+.acceptanceTermsList li {
+    padding: 0.4rem 0;
+    position: relative;
+    padding-left: 1.2rem;
+    line-height: 1.4;
+}
+.acceptanceTermsList li::before {
+    content: '\25CF'; 
+    color: var(--color-text-medium);
+    font-size: 0.5rem;
+    position: absolute;
+    left: 0;
+    top: 0.6rem;
+}
+
+/* 8. Boutons d'Action de la Modale (Inchangés) */
+.modalActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding-top: 1.25rem; 
+    margin-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05); 
+}
+.declineButton, .acceptContractButtonModal {
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 0.9rem;
+    border: none;
+    display: flex;
+    align-items: center;
+}
+.declineButton {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-text-white);
+}
+.declineButton:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.acceptContractButtonModal {
+    background-color: var(--color-red-main);
+    color: var(--color-text-white);
+}
+.acceptContractButtonModal:hover {
+    background-color: var(--color-red-dark);
+}

@@ -1,0 +1,316 @@
+/* CSS Modules pour la mise en page de LoginPage.jsx
+Conversion de toutes les classes Tailwind CSS.
+*/
+
+/* Couleurs utilisées (basées sur les teintes de gris de Tailwind) */
+:root {
+    --color-bg-dark: #0a0a0a; /* gray-950 */
+    --color-text-white: #ffffff;
+    --color-text-light: #d1d5db; /* gray-300 */
+    --color-text-medium: #9ca3af; /* gray-400 */
+    --color-text-dim: #6b7280; /* gray-500 */
+    --color-red-main: #dc2626; /* red-700 */
+    --color-red-hover: #ef4444; /* red-500 */
+    --color-red-active: #b91c1c; /* red-800 */
+    --color-input-bg: #1f2937; /* gray-800 */
+    --color-input-border: #374151; /* gray-700 */
+}
+
+/* Conteneur Principal (div.flex.min-h-screen.bg-gray-950.text-white...) */
+.container {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-white);
+    font-family: sans-serif;
+    overflow: hidden;
+    position: relative;
+    /* Suppression du flex (desktop first), géré par le flex */
+}
+
+/* Fond de Dégradé (Background radial gradient) */
+.backgroundGradient {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.2;
+}
+
+/* Colonne Gauche (div.w-1/2.flex.flex-col.items-center...) */
+.leftPanel {
+    position: relative;
+    z-index: 10;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2.5rem; /* p-10 */
+    backdrop-filter: blur(4px); /* backdrop-blur-sm */
+    background-color: rgba(0, 0, 0, 0.2); /* bg-black/20 */
+    border-right: 1px solid rgba(255, 255, 255, 0.1); /* border-r border-white/10 */
+}
+
+/* Bloc Logo/Titre (div.flex.flex-col.items-center.mt-20) */
+.headerBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5rem; /* mt-20 */
+}
+
+/* Icône SVG (svg.w-16.h-16.text-red-500.mb-4.animate-pulse-slow) */
+.logoSvg {
+    width: 4rem; /* w-16 */
+    height: 4rem; /* h-16 */
+    color: var(--color-red-hover); /* text-red-500 */
+    margin-bottom: 1rem; /* mb-4 */
+    /* Conversion de l'animation pulsée, vous devrez ajouter l'animation keyframes dans index.css */
+    /* animation: pulse-slow 4s infinite ease-in-out; */
+}
+
+/* Titre H1 (h1.text-5xl.font-extrabold...) */
+.mainTitle {
+    font-size: 3rem; /* text-5xl */
+    font-weight: 800; /* font-extrabold */
+    letter-spacing: 0.05em; /* tracking-widest */
+    margin-top: 1rem; /* mt-4 */
+}
+
+/* Sous-titre (p.text-lg.text-gray-400.mt-2) */
+.subTitle {
+    font-size: 1.125rem; /* text-lg */
+    color: var(--color-text-medium); /* text-gray-400 */
+    margin-top: 0.5rem; /* mt-2 */
+}
+
+/* Carte de Notice (GlassCard.className) */
+.noticeCard {
+    /* p-8 déjà géré par GlassCard, nous gérons ici le layout */
+    width: 80%; /* w-4/5 */
+    max-width: 28rem; /* max-w-md */
+    margin-bottom: 5rem; /* mb-20 */
+    /* Conversion de l'animation 'fade-in-up' (à définir dans index.css) */
+    /* animation: fadeInUp 0.8s ease-out; */
+}
+
+/* Texte de la Notice (h2, p) */
+.noticeTitle {
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 700; /* font-bold */
+    margin-bottom: 1rem; /* mb-4 */
+    color: var(--color-text-white);
+}
+
+.noticeText {
+    font-size: 0.875rem; /* text-sm */
+    color: rgba(255, 255, 255, 0.8); /* text-white/80 */
+    line-height: 1.625; /* leading-relaxed */
+}
+
+/* Copyright (p.text-xs.text-gray-500.mb-4) */
+.copyrightText {
+    font-size: 0.75rem; /* text-xs */
+    color: var(--color-text-dim); /* text-gray-500 */
+    margin-bottom: 1rem; /* mb-4 */
+}
+
+/* Colonne Droite - Formulaire (div.w-1/2.flex.flex-col.justify-center...) */
+.rightPanel {
+    position: relative; /* relative */
+    z-index: 10; /* z-10 */
+    width: 50%; /* w-1/2 */
+    display: flex; /* flex */
+    flex-direction: column; /* flex-col */
+    /* 🔑 CORRECTION : Centrer le contenu de la colonne droite verticalement */
+    justify-content: center; 
+    align-items: flex-start; /* items-start */
+    padding: 2.5rem; /* p-10 */
+    padding-left: 5rem; /* pl-20 */
+    background-color: rgba(0, 0, 0, 0.5); /* bg-black/50 */
+  }
+/* Titre Formulaire (h2.text-4xl.font-bold.mb-2) */
+.formTitle {
+    font-size: 2.25rem; /* text-4xl */
+    font-weight: 700; /* font-bold */
+    margin-bottom: 0.5rem; /* mb-2 */
+}
+
+/* Sous-titre Formulaire (p.text-gray-400.mb-8) */
+.formSubTitle {
+    color: var(--color-text-medium); /* text-gray-400 */
+    margin-bottom: 2rem; /* mb-8 */
+}
+
+/* Formulaire (form.w-full.max-w-md) */
+.loginForm {
+    width: 100%;
+    max-width: 28rem; /* max-w-md */
+}
+
+/* Champ de Saisie */
+.formGroup {
+    margin-bottom: 1.5rem; /* mb-6 */
+    position: relative; /* relative pour l'icône de l'œil */
+  }
+  
+  /* 🔑 CORRECTION : Ajouter une marge en bas du Label pour l'éloigner de l'Input */
+  .formLabel {
+    display: block; /* block */
+    color: #d1d5db; /* text-gray-300 */
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 600; /* font-semibold */
+    margin-bottom: 0.75rem; /* 🔑 AJOUTÉ : Augmenter l'espace mb-2 -> mb-3 */
+  }
+/* Input (input.w-full.p-3.rounded-xl.bg-gray-800...) */
+
+.formInput {
+    width: 100%; /* w-full */
+    padding: 0.75rem; /* p-3 */
+    border-radius: 0.75rem; /* rounded-xl */
+    background-color: #1f2937; /* bg-gray-800 */
+    border: 1px solid #374151; /* border border-gray-700 */
+    outline: none; /* focus:outline-none */
+    transition: all 0.2s ease-in-out; /* transition-all duration-200 */
+    color: #fff; /* text-white */
+    /* 🔑 CORRECTION : S'assurer que le padding/border est inclus dans la largeur totale (w-full) */
+    box-sizing: border-box;
+  }
+  
+  .formInput::placeholder {
+      color: #6b7280; /* placeholder-gray-500 */
+  }
+  
+  .formInput:focus {
+    border-color: transparent;
+    box-shadow: 0 0 0 2px #ef4444; /* focus:ring-2 focus:ring-red-500 */
+  }
+
+/* Bouton Afficher/Masquer (button.absolute.right-3...) */
+.togglePasswordBtn {
+    position: absolute; /* absolute */
+    right: 0.75rem; /* right-3 */
+    /* 🔑 AJUSTEMENT TOP : positionner l'icône plus bas (top: 40px -> top: 44px) pour le meilleur centrage */
+    top: 44px; 
+    color: #9ca3af; /* text-gray-400 */
+    transition: color 0.2s;
+  }
+  
+.togglePasswordBtn:hover {
+    color: var(--color-red-hover); /* hover:text-red-500 */
+}
+
+/* Section Options (div.flex.justify-between.items-center.mb-6.text-sm) */
+.optionsRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem; /* mb-6 */
+    font-size: 0.875rem; /* text-sm */
+}
+
+/* Checkbox et Label */
+.checkboxLabel {
+    display: flex;
+    align-items: center;
+    color: var(--color-text-light); /* text-gray-300 */
+}
+
+/* Checkbox Input */
+.checkboxInput {
+    /* Styles personnalisés à définir pour h-4 w-4 bg-gray-800 border-gray-700 rounded */
+    height: 1rem;
+    width: 1rem;
+    background-color: var(--color-input-bg);
+    border: 1px solid var(--color-input-border);
+    border-radius: 0.25rem;
+    color: var(--color-red-hover); /* text-red-500 */
+    transition: background-color 0.2s, border-color 0.2s;
+    /* Ajoutez l'apparence par défaut des navigateurs */
+    appearance: none;
+}
+
+.checkboxInput:checked {
+    background-color: var(--color-red-main);
+}
+
+.checkboxSpan {
+    margin-left: 0.5rem; /* ml-2 */
+}
+
+/* Lien Mots de passe perdus (a.text-red-400.hover:text-red-500...) */
+.link {
+    color: #f87171; /* text-red-400 */
+    transition: color 0.2s; /* transition-colors duration-200 */
+    text-decoration: none;
+}
+
+.link:hover {
+    color: var(--color-red-hover); /* hover:text-red-500 */
+}
+
+/* Bouton Authenticate */
+.authButton {
+    width: 100%;
+    background-color: var(--color-red-main); /* bg-red-700 */
+    color: var(--color-text-white);
+    font-weight: 700; /* font-bold */
+    padding: 0.75rem 1rem; /* py-3 */
+    border-radius: 0.75rem; /* rounded-xl */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); /* shadow-lg */
+    transition: all 0.3s; /* transition-all duration-300 */
+    border: none;
+    cursor: pointer;
+    outline: none; /* focus:outline-none */
+}
+
+.authButton:hover {
+    background-color: #ef4444; /* hover:bg-red-600 */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* hover:shadow-xl */
+    transform: translateY(-2px); /* transform hover:-translate-y-0.5 */
+}
+
+.authButton:active {
+    background-color: var(--color-red-active); /* active:bg-red-800 */
+}
+
+.authButton:focus {
+    /* focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 */
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.5); 
+}
+
+/* Texte de surveillance */
+.monitoringText {
+    font-size: 0.75rem; /* text-xs */
+    color: var(--color-text-dim); /* text-gray-500 */
+    margin-top: 2rem; /* mt-8 */
+}
+
+/* Styles pour les animations (À inclure dans index.css si on ne peut pas les inclure ici) */
+/* Exemple pour l'animation 'animate-pulse-slow' du logo */
+@keyframes pulse-slow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Exemple pour l'animation 'animate-fade-in-up' de la GlassCard */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logoSvg {
+    /* Appliquer l'animation pulse-slow */
+    animation: pulse-slow 4s infinite ease-in-out;
+}
+
+.noticeCard {
+    /* Appliquer l'animation fade-in-up */
+    animation: fadeInUp 0.8s ease-out;
+}

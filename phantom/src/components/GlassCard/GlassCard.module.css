@@ -1,0 +1,39 @@
+/*
+Conversion des classes Tailwind pour GlassCard en CSS pur.
+Les valeurs sont approximatives par rapport aux valeurs par défaut de Tailwind.
+*/
+
+.card {
+    /* p-6 -> padding: 1.5rem */
+    padding: 1.5rem; 
+
+    /* rounded-3xl -> border-radius: 1.5rem */
+    border-radius: 1.5rem; 
+
+    /* transition-all duration-300 */
+    transition: all 0.3s ease-in-out;
+    
+    /* bg-white/10 -> background: rgba(255, 255, 255, 0.1) */
+    background: rgba(255, 255, 255, 0.1); 
+
+    /* border border-white/20 */
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+
+    /* shadow-lg */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+    /* backdrop-blur-xl -> Flou d'arrière-plan (la clé du Glassmorphism) */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px); /* Pour la compatibilité avec Safari */
+
+    /* Nécessaire pour que les propriétés de flex/grid externes s'appliquent */
+    box-sizing: border-box;
+}
+
+.card:hover {
+    /* hover:shadow-2xl */
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    
+    /* hover:border-white/30 */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}

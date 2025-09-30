@@ -1,0 +1,268 @@
+/* Note: Les variables de couleur doivent être définies ou importées globalement, 
+   mais nous les laissons ici pour référence. */
+:root {
+     --color-text-white: #ffffff;
+     --color-text-medium: #9ca3af; 
+     --color-red-main: #ef4444; 
+     --color-red-dark: #dc2626; 
+     --color-green: #10b981; 
+     --color-yellow: #f59e0b; 
+     --color-blue: #3b82f6;
+    }
+    
+    /* --- Styles Généraux de la Page Equipment --- */
+    .equipmentPageContent {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        color: var(--color-text-white);
+        animation: fadeInUp 0.8s ease-out;
+    }
+    
+    /* En-tête */
+    .header {
+        margin-bottom: 1rem;
+    }
+    
+    .pageTitle {
+        font-size: 1.6rem; 
+        font-weight: 700;
+        margin-bottom: 0.2rem;
+    }
+    
+    .briefing {
+        color: var(--color-text-medium);
+        font-size: 0.85rem;
+    }
+    
+    /* --- Barre de Navigation des Onglets --- */
+    .tabBar {
+        display: flex;
+        gap: 0.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+    }
+    
+    .tabButton {
+        padding: 0.4rem 1rem;
+        background: none;
+        border: none;
+        font-size: 0.9rem;
+        color: var(--color-text-medium);
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+        transition: all 0.2s;
+    }
+    
+    .tabButton:hover {
+        color: var(--color-text-white);
+    }
+    
+    .tabButtonActive {
+        color: var(--color-red-main);
+        border-bottom-color: var(--color-red-main);
+        font-weight: 600;
+    }
+    
+    /* --- Grille d'Équipement --- */
+    .equipmentGrid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); 
+        gap: 1rem;
+    }
+    
+    /* --- Carte d'Équipement Individuelle --- */
+    .equipmentCard {
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 6px;
+        padding: 1rem; 
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        border: 1px solid transparent;
+        animation: fadeInUp 0.8s ease-out;
+        
+        /* 🔑 NOUVEAUX STYLES DE HOVER */
+        transition: all 0.3s ease-out; /* Transition pour tous les changements */
+    }
+    
+    .equipmentCard:hover {
+        border-color: var(--color-red-main); /* Bords en rouge */
+        /* 🔑 Légère élévation et/ou éclaircissement du fond pour le hover */
+        background-color: rgba(255, 255, 255, 0.07); 
+        transform: translateY(-2px); /* Légère élévation */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    .cardHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.8rem;
+    }
+    
+    /* 🔑 STYLE ET TAILLE DES ICÔNES DE TYPE (GOUTTE/PISTOLET/ETC) */
+    .itemTypeIcon {
+        width: 24px; 
+        height: 24px;
+        color: var(--color-red-main); /* Couleur d'accent */
+    }
+    
+    /* 🔑 STYLE ET TAILLE DES ICÔNES DE FAVORIS (COEUR) */
+    .favoriteIcon {
+        width: 18px; /* Taille corrigée */
+        height: 18px;
+        color: var(--color-text-medium);
+        cursor: pointer;
+        transition: color 0.2s;
+    }
+    
+    .favoriteIcon:hover {
+        color: var(--color-text-white);
+    }
+    
+    .favoriteIconActive {
+        color: var(--color-red-main); 
+        width: 18px; /* Taille corrigée */
+        height: 18px;
+    }
+    
+    .itemTitleGroup {
+        /* Marge réduite suite au déplacement des icônes dans le header */
+        margin-bottom: 0.5rem; 
+    }
+    
+    .itemName {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.1rem;
+    }
+    
+    .itemType {
+        font-size: 0.8rem;
+        color: var(--color-red-main); 
+        font-weight: 500;
+    }
+    
+    .itemDescription {
+        font-size: 0.8rem;
+        color: var(--color-text-medium);
+        line-height: 1.3;
+        margin-bottom: 1rem;
+        flex-grow: 1; 
+    }
+    
+    /* --- Statistiques et Barres de Progression --- */
+    .statsContainer {
+        margin-bottom: 1rem;
+        padding-top: 0.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.05); 
+    }
+    
+    .statRow {
+        display: flex;
+        align-items: center;
+        font-size: 0.75rem; 
+        margin-bottom: 0.3rem;
+    }
+    
+    .statName {
+        flex-basis: 70px; 
+        color: var(--color-text-medium);
+    }
+    
+    .statBar {
+        flex-grow: 1;
+        height: 4px; 
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 2px;
+        margin: 0 0.5rem;
+    }
+    
+    .statFill {
+        height: 100%;
+        background-color: var(--color-red-main);
+        border-radius: 2px;
+    }
+    
+    .statValue {
+        width: 40px; 
+        text-align: right;
+        font-weight: 600;
+    }
+    
+    /* --- Boutons d'Action --- */
+    .cardActions {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        padding-top: 0.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .detailsButton, .selectButton {
+        padding: 0.5rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        transition: background-color 0.2s;
+    }
+    
+    .buttonIcon {
+        width: 16px;
+        height: 16px;
+        margin-right: 0.3rem;
+    }
+    
+    .detailsButton {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: var(--color-text-white);
+        border: 1px solid transparent;
+    }
+    
+    .detailsButton:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .selectButton {
+        background-color: var(--color-red-main);
+        color: var(--color-text-white);
+        border: none;
+    }
+    
+    .selectButton:hover {
+        background-color: var(--color-red-dark);
+    }
+    
+    /* --- Carte Ajouter un nouvel équipement --- */
+    .addNewCard {
+        background-color: rgba(255, 255, 255, 0.02);
+        border: 2px dashed rgba(255, 255, 255, 0.1);
+        border-radius: 6px;
+        min-height: 250px; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-text-medium);
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s ease-out; /* Ajout d'une transition pour le hover */
+    }
+    
+    .addNewCard:hover {
+        border-color: var(--color-red-main);
+        color: var(--color-red-main);
+        background-color: rgba(255, 255, 255, 0.05); /* Légère lueur */
+    }
+    
+    .plusIcon {
+        width: 32px;
+        height: 32px;
+        margin-bottom: 0.5rem;
+    }

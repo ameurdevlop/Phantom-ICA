@@ -1,0 +1,378 @@
+/* --- Définition des Variables de Couleurs --- */
+:root {
+    --color-bg-dark: #0a0a0a;
+    --color-text-white: #ffffff;
+    --color-text-medium: #9ca3af; /* gray-400 */
+    --color-red-main: #ef4444; /* red-500 */
+    --color-red-dark: #dc2626; /* red-700 pour les boutons actifs */
+    --color-sidebar-bg: #111;
+    --color-mission-bg: #1f2937; /* gray-800 pour les lignes */
+    --color-mission-hover: #2d3748; /* gray-700 */
+    --color-green: #10b981; /* green-500 */
+    --color-yellow: #f59e0b; /* amber-500 */
+    --color-blue: #3b82f6; /* blue-500 */
+}
+
+/* --- Mise en page globale (Structure SideBar + Contenu) --- */
+.dashboardContainer {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-white);
+    overflow: hidden; 
+}
+
+/* Contenu Principal (La zone à droite de la barre latérale) */
+.mainContent {
+    flex-grow: 1;
+    padding: 2rem 3rem;
+    overflow-y: auto; 
+    max-height: 100vh;
+    animation: fadeInSlide 0.8s ease-out; 
+}
+
+/* --- Barre Latérale (SideBar) --- */
+.sidebar {
+    width: 220px; 
+    flex-shrink: 0;
+    background-color: var(--color-sidebar-bg);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+}
+
+/* Logo de la SideBar */
+.logo {
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    margin-bottom: 2.5rem; 
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-white);
+}
+
+.logoIcon {
+    width: 28px;
+    height: 28px;
+    color: var(--color-red-main);
+    margin-right: 0.5rem;
+}
+
+/* Menu de navigation */
+.navMenu {
+    flex-grow: 1;
+}
+
+.navItem {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out; 
+    font-size: 1rem;
+    color: var(--color-text-medium);
+    text-decoration: none; 
+}
+
+.navItem:not(.navItemActive) {
+    border-left: 4px solid transparent; 
+    padding-left: calc(1.5rem - 4px);
+}
+
+.navItem:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--color-text-white);
+    transform: translateX(4px); 
+}
+
+.navItemActive {
+    background-color: var(--color-red-dark);
+    color: var(--color-text-white);
+    border-left: 4px solid var(--color-red-main);
+    padding-left: calc(1.5rem - 4px); 
+    font-weight: 600;
+}
+
+.navItemActive .navIcon {
+    color: var(--color-text-white);
+}
+
+.navIcon {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.75rem;
+    color: var(--color-text-medium);
+}
+
+/* Pied de page de la SideBar (Log Out) */
+.logoutButton {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    transition: color 0.2s;
+    color: var(--color-text-medium);
+    font-size: 1rem;
+}
+
+.logoutButton:hover {
+    color: var(--color-red-main);
+}
+
+/* --- Entête et Stats (Main Content) --- */
+.header {
+    margin-bottom: 2rem;
+}
+
+.welcomeText {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.briefing {
+    color: var(--color-text-medium);
+    margin-bottom: 2rem;
+}
+
+/* Grille des cartes de statistiques */
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3rem; /* 🔑 AJUSTÉ : Augmenté de 2rem à 3rem pour créer un espace avec 'Active Missions' */
+}
+
+/* 🔑 AJUSTEMENT STAT CARD : Diminution de l'espace autour du titre */
+.statHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0; /* Réduit à 0 */
+}
+
+.statIcon {
+    width: 28px;
+    height: 28px;
+}
+
+.title {
+    font-size: 1rem; 
+}
+
+/* 🔑 AJOUTÉ : Diminution de l'espace autour de la valeur */
+.value {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-top: 2px; /* Réduit l'espace au-dessus de la valeur */
+    margin-bottom: 0; 
+}
+
+/* --- Section Missions Actives --- */
+.missionsHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    margin-top: 2rem; /* 🔑 AJOUTÉ : Pour séparer le titre des cartes de stats précédentes */
+}
+
+.sectionTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.viewAllButton {
+    background: none;
+    border: none;
+    color: var(--color-red-main);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.viewAllButton:hover {
+    color: var(--color-red-dark);
+}
+
+/* Grille des cartes de missions */
+.missionsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 4rem; /* 🔑 AJUSTÉ : Augmenté de 3rem à 4rem pour créer un espace avec 'Recent Activities' */
+}
+
+/* CORRECTION CRITIQUE : Assure que le footer reste en bas */
+.missionCardLayout {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; 
+}
+.missionContent {
+    flex-grow: 1; 
+    margin-bottom: 1rem; 
+}
+
+
+/* Style de la carte individuelle de mission (Contenu dans GlassStatsCard) */
+.missionCardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.targetName {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text-white);
+}
+
+
+.location {
+    display: flex;
+    align-items: center;
+    color: var(--color-text-medium);
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem; 
+}
+
+.detailRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.3rem; 
+    font-size: 0.9rem;
+}
+
+.detailLabel {
+    color: var(--color-text-medium);
+}
+
+.detailValue {
+    font-weight: 600;
+    color: var(--color-text-white);
+}
+
+.priorityHigh {
+    color: var(--color-red-main);
+}
+.priorityMedium {
+    color: var(--color-yellow);
+}
+.priorityCritical {
+    color: var(--color-red-main);
+}
+
+.currency {
+    color: var(--color-green); /* Récompense en vert */
+}
+
+.missionFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem; 
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1rem;
+    flex-shrink: 0; 
+}
+
+.actionButton {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.detailsButton {
+    background: none;
+    border: 1px solid var(--color-text-medium);
+    color: var(--color-text-medium);
+}
+
+.detailsButton:hover {
+    border-color: var(--color-text-white);
+    color: var(--color-text-white);
+}
+
+.acceptButton {
+    background-color: var(--color-red-dark);
+    color: var(--color-text-white);
+    border: 1px solid var(--color-red-dark);
+}
+
+.acceptButton:hover {
+    background-color: var(--color-red-main);
+}
+
+/* --- Section Activités Récentes (Tableau) --- */
+.activitiesSection {
+    margin-bottom: 3rem;
+    margin-top: 2rem; /* 🔑 AJOUTÉ : Pour séparer le titre des cartes de missions précédentes */
+}
+
+.activityTable {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.05); 
+    border-radius: 8px;
+    overflow: hidden;
+    animation: fadeInUp 1s ease-out 0.3s forwards; 
+    opacity: 0; 
+}
+
+.tableHeader th {
+    text-align: left;
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+    color: var(--color-text-medium);
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tableRow td {
+    padding: 1rem 1.5rem;
+    font-size: 0.9rem;
+}
+
+.tableRow:nth-child(even) {
+    background: rgba(0, 0, 0, 0.1); 
+}
+
+.tableRow:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.statusCompleted {
+    color: var(--color-green);
+    font-weight: 600;
+}
+
+/* --- Keyframes pour les animations --- */
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,312 @@
+/* Fichier : MissionDetailsModal.module.css */
+
+/* Variables (Cohérence avec le thème PHANTOM/ICA) */
+:root {
+    --color-text-white: #ffffff;
+    --color-text-medium: #a1a1aa; 
+    --color-red-main: #ef4444; 
+    --color-red-dark: #dc2626; 
+    --color-yellow: #f59e0b; 
+    --color-green: #10b981; 
+    --color-background-darker: #18181b; 
+    --color-border-subtle: rgba(255, 255, 255, 0.15); 
+    --color-card-background: #0f172a; /* Bleu foncé pour les cartes dans la colonne de droite */
+    --color-active-tag: #dc2626; /* Rouge pour le tag 'Active' */
+}
+
+/* Animations (Inchangées) */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes fadeInSlide {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Styles de la Modale --- */
+
+/* 1. L'Overlay (Effet Glassmorphism) */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+    background-color: rgba(0, 0, 0, 0.4); 
+    backdrop-filter: blur(8px); 
+    -webkit-backdrop-filter: blur(8px); 
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; 
+    animation: fadeIn 0.2s ease-out; 
+}
+
+/* 2. Le Contenu de la Modale (Hauteur et Largeur optimisées) */
+.modalContent {
+    background-color: var(--color-background-darker);
+    width: 100%;
+    max-width: 950px; /* Un peu plus large pour les détails */
+    max-height: 95vh; /* Assure que la modale tienne dans l'écran */
+    
+    border: 1px solid var(--color-border-subtle); 
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.2); 
+    border-radius: 8px;
+    padding: 1.5rem; 
+    color: var(--color-text-white);
+    transform: scale(1);
+    animation: fadeInSlide 0.3s ease-out; 
+    overflow-y: auto; /* Défilement interne si le contenu dépasse */
+}
+
+/* 3. En-tête */
+.modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.75rem; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+    margin-bottom: 1.25rem; 
+}
+.modalTitle {
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem; 
+    font-weight: 700;
+    color: var(--color-text-white);
+}
+.backIcon {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--color-text-medium);
+    margin-right: 1rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.backIcon:hover {
+    color: var(--color-red-main);
+}
+.modalCloseButton {
+    background: none;
+    border: none;
+    color: var(--color-text-medium);
+    font-size: 1.8rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+    padding: 0.25rem;
+}
+.modalCloseButton:hover {
+    color: var(--color-red-main);
+}
+
+/* 4. Structure du Corps (Grille à deux colonnes) */
+.modalBodyGrid {
+    display: grid;
+    grid-template-columns: 3fr 1fr; /* Colonne de gauche plus large */
+    gap: 2rem;
+}
+
+/* Colonne Gauche (Briefing, etc.) */
+.leftColumn {
+    padding-right: 1rem;
+}
+
+.statusRow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+.statusTitle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-medium);
+}
+.locationText {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text-white);
+    flex-grow: 1;
+}
+.statusActive {
+    background-color: var(--color-active-tag);
+    color: var(--color-text-white);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.sectionTitle {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-red-main);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+.briefingText {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--color-text-medium);
+}
+
+.detailsList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--color-text-medium);
+}
+
+.detailsList li {
+    display: flex;
+    align-items: flex-start;
+    padding: 0.4rem 0;
+}
+.listDotRed {
+    width: 0.4rem;
+    height: 0.4rem;
+    color: var(--color-red-main);
+    margin-right: 1rem;
+    margin-top: 0.5rem;
+    flex-shrink: 0;
+}
+.listDotYellow {
+    width: 0.4rem;
+    height: 0.4rem;
+    color: var(--color-yellow);
+    margin-right: 1rem;
+    margin-top: 0.5rem;
+    flex-shrink: 0;
+}
+.listDotMedium {
+    width: 0.4rem;
+    height: 0.4rem;
+    color: var(--color-text-medium);
+    margin-right: 1rem;
+    margin-top: 0.5rem;
+    flex-shrink: 0;
+}
+
+
+/* Colonne Droite (Cartes d'informations et Actions) */
+.rightColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.card {
+    background-color: var(--color-card-background); /* Conteneur sombre */
+    padding: 1rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.cardTitle {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-text-medium);
+    margin: 0 0 0.75rem 0;
+    text-transform: uppercase;
+}
+.cardText {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text-white);
+    margin: 0 0 0.25rem 0;
+}
+.cardSubText {
+    font-size: 0.85rem;
+    color: var(--color-text-medium);
+    margin: 0 0 1rem 0;
+}
+.viewProfileButton {
+    background: none;
+    border: 1px solid var(--color-text-medium);
+    color: var(--color-text-medium);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+}
+.viewProfileButton:hover {
+    background-color: var(--color-text-medium);
+    color: var(--color-background-darker);
+}
+
+.infoRow {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.4rem 0;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+}
+.infoRow:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.infoLabel {
+    color: var(--color-text-medium);
+    font-size: 0.9rem;
+}
+.infoValue {
+    color: var(--color-text-white);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.threatCritical {
+    color: var(--color-red-main);
+    font-weight: 700;
+}
+.bountyValue {
+    color: var(--color-green);
+    font-weight: 600;
+}
+
+/* Actions Card */
+.actionsCard {
+    background-color: var(--color-card-background);
+    padding: 1rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.acceptMissionButton, .secondaryActionButton {
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 0.9rem;
+    border: none;
+    width: 100%;
+}
+
+.acceptMissionButton {
+    background-color: var(--color-red-main);
+    color: var(--color-text-white);
+    margin-bottom: 0.5rem;
+}
+.acceptMissionButton:hover {
+    background-color: var(--color-red-dark);
+}
+
+.secondaryActionButton {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-text-white);
+}
+.secondaryActionButton:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
